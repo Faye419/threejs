@@ -1,5 +1,15 @@
+class Color {
+    constructor(_r,_g,_b){
+      this.r = _r;
+      this.g = _g;
+      this.b = _b;
+    }
+  }
+
 let canvas;
 let easyCam;
+let color;
+let displayState = 0;
 
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight, WEBGL);
@@ -7,6 +17,12 @@ function setup() {
 
    
     easyCam = createEasyCam();
+    color = new Color(255,0,0);
+
+    gui = new dat.GUI();
+  gui.add(color, 'r', 0, 255);
+	gui.add(color, 'g', 0, 255);
+	gui.add(color, 'b', 0, 255);
 
     let state = {
         distance: 1500,
@@ -27,6 +43,9 @@ function draw() {
     //ambientMaterial(255,0,0);
     normalMaterial();
     noStroke();
+    lights();
+    ambientMaterial(color.r,color.g,color.b);
+    
 
     //create pattern
     for (var x = -400; x <= 400; x += 50) {
@@ -34,7 +53,7 @@ function draw() {
             push();
             translate(x, 0, z);
             var distance = dist(x, 0, z, 0, 0, 0);
-            var length = sin(distance + frameCount * 5) * 100 + 200;
+            var length = sin(distance + frameCount * 5) * 50 + 200;
             box(50, length, 50);
             pop();
         }
