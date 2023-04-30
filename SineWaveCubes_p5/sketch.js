@@ -8,7 +8,7 @@ function setup() {
    
     easyCam = createEasyCam();
 
-    let state = {
+    //let state = {
         distance: 1500,
         center  : [0, 0, 0],
         rotation: [0.9279116079642078, -0.2760465000923418, -0.2415840653641595, 0.06644935631122713]
